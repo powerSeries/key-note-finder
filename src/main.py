@@ -5,6 +5,3 @@ from scale import Scale
 from keyMenu import KeyMenu
 
 KeyMenu()
-
-
-    

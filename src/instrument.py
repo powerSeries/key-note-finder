@@ -6,6 +6,7 @@ class OpenString:
     # Class variables
     OpenNote = ''
     AllNotes = []
+    AllKeyNotes = []
     MAX_FRETS = 0
 
     # Initialize the open string with all notes the string can play
@@ -19,11 +20,24 @@ class OpenString:
         self.OpenNote = newNote
         self.AllNotes = Utility.FillOpenStringNotes(newNote, self.MAX_FRETS)
 
+    def InitializeKeyNotes(self, scaleNotes):
+        self.AllKeyNotes = []
+        count = 0
+        for i in range(len(self.AllNotes)):
+            if self.AllNotes[i] in scaleNotes:
+                self.AllKeyNotes.append(str(count))
+            else:
+                self.AllKeyNotes.append('-')
+            
+            count += 1
+
 
     # Display all the notes for the particular OpenString
     def displayAllNotes(self):
         print(self.AllNotes)
         
+    def displayAllKeyNotes(self):
+        print(self.AllKeyNotes)
 
 class Instrument:
     # Class variables
@@ -55,11 +69,22 @@ class Instrument:
 
         pass
 
+    def FindKeyNotes(self, scaleNotes) -> None:    
+        self.AllKeyNotes = self.AllStringNotes
+
+        for openString in self.AllKeyNotes:
+            openString.InitializeKeyNotes(scaleNotes)
+
+
 
     # Shows all the notes that the instrument has available
     def ShowAllNotes(self):
         for stringNotes in self.AllStringNotes:
             stringNotes.displayAllNotes()
+
+    def ShowAllKeyNotes(self):
+        for keyNotes in self.AllKeyNotes:
+            keyNotes.displayAllKeyNotes()
 
     # Shows all the notes of a particular OpenString
     def ShowOpenStringNotes(self, openNote):

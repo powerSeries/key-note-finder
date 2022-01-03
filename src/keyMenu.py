@@ -1,6 +1,8 @@
 from instrument import Instrument
 from scale import Scale
 from utility import Utility
+from error import Error
+
 class KeyMenu:
     # Class variables
     option = 0
@@ -26,6 +28,7 @@ class KeyMenu:
                 pass
             elif(self.option == 4):
                 # Display 
+                self.KeyNoteFinder()
                 pass
             elif(self.option == 5):
                 print("Goodbye...")
@@ -97,3 +100,19 @@ class KeyMenu:
         print("Open strings have been changed.")
         print("These are the following new Open Strings")
         self.Instrument.ShowOpenStrings()
+
+    def KeyNoteFinder(self) -> None:
+        if self.Instrument is None:
+            Error.InvalidInstrument()
+            return
+        elif self.Key is None:
+            Error.InvalidKey()
+            return
+
+        self.Instrument.FindKeyNotes(self.Key.ScaleNotes)
+        print("Where to find all the notes in key with " + self.selectKey)
+        print("===============================================================")
+        self.Instrument.ShowAllKeyNotes()
+        print("===============================================================")
+
+        
