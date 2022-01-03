@@ -27,7 +27,8 @@ class Utility:
         
         return temp
 
-    def CompleteScale(rootNote):
+    # Completes the major scale depending on the starting root note
+    def CompleteMajorScale(rootNote):
         temp = []
         temp.append(rootNote)
         currentNote = rootNote

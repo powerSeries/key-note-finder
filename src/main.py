@@ -2,6 +2,7 @@
 from instrument import Instrument
 from utility import Utility
 from scale import Scale
+from keyMenu import KeyMenu
 
 # Ask the user to input the number of frets their instruments has
 maxFretCount = input("Enter the max fret your instrument can go: ")
@@ -28,7 +29,7 @@ mainInst = Instrument(maxFretCount, listOfNotes)
 mainInst.ShowAllNotes()
 mainInst.ShowOpenStringNotes('E')
 
-Cmaj = Scale('C')
-Cmaj.displayScale()
+menu = KeyMenu()
+menu.InitializeMenu()
 
     
