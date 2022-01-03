@@ -8,13 +8,16 @@ class OpenString:
     def __init__(self, note, maxFrets):
         self.OpenNote = note
         self.AllNotes = Utility.FillOpenStringNotes(note, maxFrets)
+
+    def displayAllNotes(self):
+        print(self.AllNotes)
         
 
 class Instrument:
 
     TotalFrets = 0
     ListOfOpenNotes = []
-    AllNotes = []
+    AllStringNotes = []
 
     def __init__(self, totalFrets, listOfOpenNotes):
         self.TotalFrets = totalFrets
@@ -25,9 +28,16 @@ class Instrument:
             openString = OpenString(openNote, totalFrets)
             allNotes.append(openString)
 
-        self.AllNotes = allNotes     
+        self.AllStringNotes = allNotes     
 
 
+    def ShowAllNotes(self):
+        for stringNotes in self.AllStringNotes:
+            stringNotes.displayAllNotes()
+
+    def ShowOpenStringNotes(self, openNote):
+        openNoteIndex = self.ListOfOpenNotes.index(openNote)
+        self.AllStringNotes[openNoteIndex].displayAllNotes()
 
     
         
