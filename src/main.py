@@ -1,5 +1,5 @@
 # import packages
-from instrument import OpenString
+from instrument import Instrument, OpenString
 from notes import Notes
 from utility import Utility
 
@@ -29,5 +29,5 @@ for OpenNote in listOfNotes:
     temp = Utility.FillOpenStringNotes(OpenNote, int(maxFretCount))
     allNotes.append(temp)
 
-print(allNotes)
+mainInst = Instrument(maxFretCount, listOfNotes)
     

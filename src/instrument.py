@@ -1,24 +1,34 @@
 from notes import Notes
+from utility import Utility
 
 class OpenString:
-    MAX_OF_NOTES = 8
-    
+    OpenNote = ''
+    AllNotes = []
 
-    def __init__(self, note):
-        self.Note = note
-
-    def Initialize() -> None:
-        pass
+    def __init__(self, note, maxFrets):
+        self.OpenNote = note
+        self.AllNotes = Utility.FillOpenStringNotes(note, maxFrets)
         
 
 class Instrument:
-    def __init__(self):
-        self.TotalFrets = 0
-        self.NumOfOpen = 0
 
-    def __init__(self, totalFrets, numOfOpen):
+    TotalFrets = 0
+    ListOfOpenNotes = []
+    AllNotes = []
+
+    def __init__(self, totalFrets, listOfOpenNotes):
         self.TotalFrets = totalFrets
-        self.NumOfOpen = numOfOpen
+        self.ListOfOpenNotes = listOfOpenNotes
 
+        allNotes = []
+        for openNote in listOfOpenNotes:
+            openString = OpenString(openNote, totalFrets)
+            allNotes.append(openString)
+
+        self.AllNotes = allNotes     
+
+
+
+    
         
     
