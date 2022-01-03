@@ -34,7 +34,7 @@ class KeyMenu:
                 print("Goodbye...")
                 break
         
-
+    # Display the main menu options
     def InitializeMenu(self) -> None:
         print("[1] - Initialize instrument.")
         print("[2] - Select the key.")
@@ -45,6 +45,7 @@ class KeyMenu:
         print()
         self.option = int(input("Enter your option: "))    
     
+    # Creates a new Instrument for the user to use
     def InitializeInstrument(self) -> None:
         # Ask the user to input the number of frets their instruments has
         maxFretCount = input("Enter the max fret your instrument can go: ")
@@ -67,6 +68,7 @@ class KeyMenu:
 
         print("Instrument has been initialized.........!")
 
+    # Initializes the scale to the Key you are trying to play in
     def InitializeScale(self) -> None:
         # initialize Scale
         self.Key = Scale('C')
@@ -81,26 +83,31 @@ class KeyMenu:
         
         print("Key has been selected........!")
 
+    # Change the open strings to a new set of open strings determined
+    # by the user
     def ChangeOpenStrings(self) -> None:
         if self.Instrument is None:
             print("Intrument has not been created, please create a new one.")
             return
 
         self.Instrument.ShowOpenStrings()
-        
-        # taking multiple inputs at a time
+
         changeOpen = [str(changeOpen) for changeOpen in input("Enter open strings you want to change: ").split()]
         
         print()
         print("List of all possible notes")
         print(Utility.OrderOfNotes)
+
         for open in changeOpen:
             newNote = input("Change " + open + " to: ")
             self.Instrument.ChangeOpenStringTo(open, newNote)
+
         print("Open strings have been changed.")
         print("These are the following new Open Strings")
+
         self.Instrument.ShowOpenStrings()
 
+    # Display all the notes that are in key
     def KeyNoteFinder(self) -> None:
         if self.Instrument is None:
             Error.InvalidInstrument()

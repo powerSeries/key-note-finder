@@ -1,5 +1,4 @@
 # import packages
-from notes import Notes
 from utility import Utility
 
 class OpenString:
@@ -16,10 +15,12 @@ class OpenString:
         self.MAX_FRETS = maxFrets
         self.AllNotes = Utility.FillOpenStringNotes(note, maxFrets)
 
+    # Change the open string to the new note and find all its notes
     def ChangeOpenStringNotes(self, newNote):
         self.OpenNote = newNote
         self.AllNotes = Utility.FillOpenStringNotes(newNote, self.MAX_FRETS)
 
+    # Creates a list of the location of all the notes in key
     def InitializeKeyNotes(self, scaleNotes):
         self.AllKeyNotes = []
         count = 0
@@ -31,11 +32,11 @@ class OpenString:
             
             count += 1
 
-
     # Display all the notes for the particular OpenString
     def displayAllNotes(self):
         print(self.AllNotes)
         
+    # Display all the notes found that are in key
     def displayAllKeyNotes(self):
         print(self.AllKeyNotes)
 
@@ -61,27 +62,27 @@ class Instrument:
 
         self.AllStringNotes = allNotes
 
+    # Able to change the instruments open strings
     def ChangeOpenStringTo(self, changeNote, newNote):
         changeNoteIndex = self.ListOfOpenNotes.index(changeNote)
         self.ListOfOpenNotes[changeNoteIndex] = newNote
 
         self.AllStringNotes[changeNoteIndex].ChangeOpenStringNotes(newNote)
-
         pass
-
+    
+    # Finds the position of all the notes that are in key
     def FindKeyNotes(self, scaleNotes) -> None:    
         self.AllKeyNotes = self.AllStringNotes
 
         for openString in self.AllKeyNotes:
             openString.InitializeKeyNotes(scaleNotes)
 
-
-
     # Shows all the notes that the instrument has available
     def ShowAllNotes(self):
         for stringNotes in self.AllStringNotes:
             stringNotes.displayAllNotes()
 
+    # Shows all the notes that the instrument will be in key with
     def ShowAllKeyNotes(self):
         for keyNotes in self.AllKeyNotes:
             keyNotes.displayAllKeyNotes()
@@ -91,6 +92,7 @@ class Instrument:
         openNoteIndex = self.ListOfOpenNotes.index(openNote)
         self.AllStringNotes[openNoteIndex].displayAllNotes()
 
+    # Shows all the open strings the instrument has
     def ShowOpenStrings(self) -> None:
         print(self.ListOfOpenNotes)
 
