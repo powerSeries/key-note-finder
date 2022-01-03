@@ -23,4 +23,11 @@ for i in range(0, int(maxNumOfOpenStrings)):
 
     listOfNotes.append(temp)
 
-print(listOfNotes)
+allNotes = []
+for OpenNote in listOfNotes:
+    temp = []
+    temp = Utility.FillOpenStringNotes(OpenNote, int(maxFretCount))
+    allNotes.append(temp)
+
+print(allNotes)
+    
